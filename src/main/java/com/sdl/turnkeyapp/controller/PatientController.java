@@ -10,6 +10,6 @@ public class PatientController {
 
     @GetMapping("/status")
     public String getAppStatus(){
-        return "index";
+        return "patientsymptom";
     }
 }
