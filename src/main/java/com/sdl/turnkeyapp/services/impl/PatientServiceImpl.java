@@ -1,40 +1,32 @@
 package com.sdl.turnkeyapp.services.impl;
 
-import com.sdl.turnkeyapp.client.DiagnosisClient;
+import com.sdl.turnkeyapp.client.ClientRestTemplate;
 import com.sdl.turnkeyapp.dto.Symptom;
 import com.sdl.turnkeyapp.models.DiagnosisResult;
 import com.sdl.turnkeyapp.services.PatientService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PatientServiceImpl implements PatientService {
 
-  private final DiagnosisClient client;
+  private Logger logger = LoggerFactory.getLogger(PatientServiceImpl.class);
+  private final ClientRestTemplate client;
 
   @Autowired
-  public PatientServiceImpl(DiagnosisClient client) {
+  public PatientServiceImpl(ClientRestTemplate client) {
     this.client = client;
   }
 
   @Override
   public DiagnosisResult patientDiagnosis(Symptom symptom) {
-    if(validHeaders()){
-      return client.getDiagnosis(symptom);
-    }
-    addHeaders();
-    return client.getDiagnosis(symptom);
+    logger.info("Syptoms are {}", symptom);
+
+        DiagnosisResult result = client.getDiagnosisResult(symptom);
+        logger.info("The result is {}", result);
+        return result;
   }
 
-  private boolean validHeaders() {
-    return true;
-  }
-
-
-  private void addHeaders() {
-    HttpHeaders headers = new HttpHeaders();
-    headers.set("app_id", "your_app_id");
-    headers.set("app_key", "your_app_key");
-  }
 }
