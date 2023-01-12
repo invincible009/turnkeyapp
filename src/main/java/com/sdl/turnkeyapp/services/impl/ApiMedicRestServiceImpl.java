@@ -2,12 +2,7 @@ package com.sdl.turnkeyapp.services.impl;
 import Decoder.BASE64Encoder;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sdl.turnkeyapp.dto.AccessToken;
-import com.sdl.turnkeyapp.dto.DiagnosedSpecialisation;
-import com.sdl.turnkeyapp.dto.HealthDiagnosis;
-import com.sdl.turnkeyapp.dto.HealthIssueInfo;
-import com.sdl.turnkeyapp.dto.HealthItem;
-import com.sdl.turnkeyapp.dto.HealthSymptomSelector;
+import com.sdl.turnkeyapp.dto.*;
 import com.sdl.turnkeyapp.enums.Gender;
 import com.sdl.turnkeyapp.enums.SelectorStatus;
 import com.sdl.turnkeyapp.services.ApiMedicRestService;
@@ -178,31 +173,29 @@ public class ApiMedicRestServiceImpl implements ApiMedicRestService {
   }
 
   @Override
-  public List<HealthDiagnosis> loadDiagnosis(List<Integer> selectedSymptoms, Gender gender,
-      int yearOfBirth) throws Exception {
-    if (selectedSymptoms == null || selectedSymptoms.size() == 0) {
+  public List<HealthDiagnosis> loadDiagnosis(Symptom symptom) throws Exception {
+    if (symptom.getSelectedSymptoms() == null || symptom.getSelectedSymptoms().size() == 0) {
       throw new IllegalArgumentException("selectedSymptoms  Can not be null or empty");
     }
 
-    String serializedSymptoms = new ObjectMapper().writeValueAsString(selectedSymptoms);
-    String action = "diagnosis?symptoms=" + serializedSymptoms + "&gender=" + gender.toString()
-        + "&year_of_birth=" + yearOfBirth;
-    return this.makeHttpCall(action, new TypeReference<List<HealthDiagnosis>>() {
+    String serializedSymptoms = new ObjectMapper().writeValueAsString(symptom.getSelectedSymptoms());
+    String action = "diagnosis?symptoms=" + serializedSymptoms + "&gender=" + symptom.getGender().toString()
+        + "&year_of_birth=" + symptom.getYearOfBirth();
+    return makeHttpCall(action, new TypeReference<List<HealthDiagnosis>>() {
     });
   }
 
   @Override
-  public List<DiagnosedSpecialisation> loadSpecialisations(List<Integer> selectedSymptoms,
-      Gender gender, int yearOfBirth) throws Exception {
-    if (selectedSymptoms == null || selectedSymptoms.size() == 0) {
+  public List<DiagnosedSpecialisation> loadSpecialisations(Symptom symptom) throws Exception {
+    if (symptom.getSelectedSymptoms() == null || symptom.getSelectedSymptoms().size() == 0) {
       throw new IllegalArgumentException("selectedSymptoms  Can not be null or empty");
     }
 
-    String serializedSymptoms = new ObjectMapper().writeValueAsString(selectedSymptoms);
+    String serializedSymptoms = new ObjectMapper().writeValueAsString(symptom.getSelectedSymptoms());
     String action =
-        "diagnosis/specialisations?symptoms=" + serializedSymptoms + "&gender=" + gender.toString()
-            + "&year_of_birth=" + yearOfBirth;
-    return this.makeHttpCall(action, new TypeReference<List<DiagnosedSpecialisation>>() {
+        "diagnosis/specialisations?symptoms=" + serializedSymptoms + "&gender=" + symptom.getGender().toString()
+            + "&year_of_birth=" + symptom.getYearOfBirth();
+    return makeHttpCall(action, new TypeReference<List<DiagnosedSpecialisation>>() {
     });
   }
 

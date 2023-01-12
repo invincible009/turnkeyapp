@@ -10,32 +10,39 @@
 
   <title>Patient Symptom Form</title>
 </head>
+
+</head>
 <body>
-
 <div class="container">
-  <h1 class="text-primary mb-3">Diagnosis Specialisation Result</h1>
-  <p class="lead">The patient has been diagnosed with the following specialisation :</p>
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Patient ID</th>
-      <th>Diagnosis type</th>
-      <th>Accuracy</th>
-      <th>Ranking </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="item : ${diagnosis}">
-      <td th:text="${item.id}"></td>
-      <td th:text="${item.name}"></td>
-      <td th:text="${item.accuracy}"></td>
-      <td th:text="${item.ranking}"></td>
-    </tr>
-    </tbody>
-  </table>
+  <h1>Enter Patient Symptom Below</h1>
+  <form id="ptsymptom" th:action="@{/app/patient/result}" method="post" th:object="${symptom}">
+    <div class="form-group">
 
-  <a href="#" class="btn btn-primary">View Treatment Options</a>
+      <div class="form-group-md mb-3">
+        <input type="text" class="form-control" id="symptom"
+               aria-describedby="symptomHelp" th:field="*{selectedSymptoms}"
+               placeholder="Enter Patient's symptom">
+      </div>
+
+      <div class="form-group-md mb-3" >
+        <input type="text" class="form-control" id="yearOfBirth"
+               aria-describedby="age" th:field="*{yearOfBirth}"
+               placeholder="Enter Patient's year of Birth">
+      </div>
+
+      <div class="form-group-md mb-3">
+        <label for="gender">Select The Patient's Gender:</label>
+        <select id="gender" name="gender">
+          <option th:each="gen : ${T(com.sdl.turnkeyapp.enums.Gender).values()}"
+                  th:value="${gen}" th:text="${gen}"></option>
+        </select>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 </div>
+
+
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

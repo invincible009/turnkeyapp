@@ -1,7 +1,10 @@
 package com.sdl.turnkeyapp.services.impl;
 
 
+import com.sdl.turnkeyapp.dto.DiagnosedSpecialisation;
+import com.sdl.turnkeyapp.dto.HealthDiagnosis;
 import com.sdl.turnkeyapp.dto.HealthItem;
+import com.sdl.turnkeyapp.dto.Symptom;
 import com.sdl.turnkeyapp.services.ApiMedicRestService;
 import com.sdl.turnkeyapp.services.PatientService;
 import java.util.List;
@@ -25,5 +28,24 @@ private Logger logger = LoggerFactory.getLogger(PatientServiceImpl.class);
   @Override
   public List<HealthItem> allSymptoms() {
     return null;
+  }
+
+  @Override
+  public List<DiagnosedSpecialisation> patientDiagnosis(Symptom symptom) {
+    try {
+      return medicRestService.loadSpecialisations(symptom);
+    } catch (Exception e) {
+      throw new RuntimeException("Fail to load patient diagnosis "+ e.getMessage());
+    }
+  }
+
+  @Override
+  public List<HealthDiagnosis> patientDiagnosisResult(Symptom symptom) {
+    try {
+      return medicRestService.loadDiagnosis(symptom);
+    } catch (Exception e) {
+      throw new RuntimeException("Fail to load patient diagnosis "+ e.getMessage());
+    }
+
   }
 }

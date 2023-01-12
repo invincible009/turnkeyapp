@@ -7,9 +7,8 @@ import lombok.Data;
 @Data
 public class Symptom {
 
-  private List<Double> id;
+  private List<Integer> selectedSymptoms;
   private Gender gender;
-  private int age;
-  private String token;
+  private int yearOfBirth;
 
 }

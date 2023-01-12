@@ -1,9 +1,13 @@
 package com.sdl.turnkeyapp.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 public class HealthItem {
-private int id;
-private String name;
+    @JsonProperty("ID")
+    private int id;
+
+    @JsonProperty("Name")
+    private String name;
 }
