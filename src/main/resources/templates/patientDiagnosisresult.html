@@ -15,6 +15,19 @@
 <div class="container">
     <h1 class="text-primary mb-3">Diagnosis Result</h1>
     <p class="lead">The patient has been diagnosed with the following condition:</p>
+    <form th:action="@{/app/search}" method="get" th:object="${data}">
+        <input type="text" name="query" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+
+    <table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        <tr th:each="data : ${data}">
+            <td th:text="${data.name}"></td>
+        </tr>
+    </table>
 
     <table class="table">
         <thead>

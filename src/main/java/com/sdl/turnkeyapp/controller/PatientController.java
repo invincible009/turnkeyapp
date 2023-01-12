@@ -6,14 +6,13 @@ import com.sdl.turnkeyapp.dto.HealthItem;
 import com.sdl.turnkeyapp.dto.Symptom;
 import com.sdl.turnkeyapp.services.PatientService;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -57,6 +56,18 @@ public class PatientController {
         System.out.println(symptom);
         model.addAttribute("result", result);
         return "patientDiagnosisresult";
+    }
+
+    @GetMapping("/search")
+    public String search(Model model, @RequestParam("query") String query) {
+
+        List<HealthDiagnosis> healthDiagnosesData = patientService.getHealthDiagnosisData(query);
+
+        List<HealthDiagnosis> filteredData = healthDiagnosesData.stream()
+                .filter(d -> d.getIssue().getName().contains(query.toLowerCase()))
+                .collect(Collectors.toList());
+        model.addAttribute("data", filteredData);
+        return "dataTable";
     }
 
 }
