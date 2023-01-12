@@ -1,8 +1,12 @@
 package com.sdl.turnkeyapp.controller;
 
+import com.sdl.turnkeyapp.dto.HealthItem;
 import com.sdl.turnkeyapp.services.PatientService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner.Mode;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,15 +20,11 @@ public class PatientController {
         this.patientService = patientService;
     }
 
-    @GetMapping("/login")
-    public String loginUser() throws Exception {
-        patientService.login();
-        return "patientresult";
-    }
 
     @GetMapping("/status")
-    public String getAppStatus()throws Exception{
-        patientService.login();
+    public String getAppStatus(Model model){
+        List<HealthItem> healthItems = patientService.allSymptoms();
+        model.addAttribute("items", healthItems);
         return "patientsymptom";
     }
 

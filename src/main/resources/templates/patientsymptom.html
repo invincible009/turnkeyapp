@@ -15,7 +15,7 @@
 <body>
 <div class="container">
     <h1>Enter Patient Symptom</h1>
-    <form>
+    <form th:object="${items}">
         <div class="form-group">
             <label for="symptom">Symptom</label>
             <input type="text" class="form-control" id="symptom" aria-describedby="symptomHelp" placeholder="Enter symptom">
