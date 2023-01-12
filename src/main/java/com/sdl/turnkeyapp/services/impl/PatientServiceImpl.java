@@ -58,7 +58,7 @@ private Logger logger = LoggerFactory.getLogger(PatientServiceImpl.class);
 
   @Override
   public List<HealthDiagnosis> getHealthDiagnosisData(String query) {
-    //Todo Look for the keyword fromthe two repos and return where the query is found.
+    //Todo Look for the keyword from the two repos and return where the query is found.
     return null;
   }
 

@@ -6,28 +6,20 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Issue{
-
 	@Id
 	@GeneratedValue
-	private int id;
+	private int iD;
 	private int accuracy;
 	private int ranking;
 	private String profName;
 	private String icdName;
-	private int iD;
+
 	private String icd;
 	private String name;
 
 	public Issue() {
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public int getAccuracy() {
 		return accuracy;

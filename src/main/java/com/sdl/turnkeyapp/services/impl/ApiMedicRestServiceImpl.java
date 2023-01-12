@@ -1,5 +1,4 @@
 package com.sdl.turnkeyapp.services.impl;
-import Decoder.BASE64Encoder;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sdl.turnkeyapp.dto.*;
@@ -11,6 +10,7 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.List;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -75,8 +75,8 @@ public class ApiMedicRestServiceImpl implements ApiMedicRestService {
       mac.init(keySpec);
       byte[] result = mac.doFinal(url.getBytes());
 
-      BASE64Encoder encoder = new BASE64Encoder();
-      computedHashString = encoder.encode(result);
+
+      computedHashString = Base64.getEncoder().encodeToString(result);
 
     } catch (NoSuchAlgorithmException e) {
       throw new Exception("Can not create token (NoSuchAlgorithmException)" + e.getMessage());

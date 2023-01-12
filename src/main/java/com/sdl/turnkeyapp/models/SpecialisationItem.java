@@ -9,20 +9,34 @@ public class SpecialisationItem{
 
 	@Id
 	@GeneratedValue
-	private int id;
-	private int specialistID;
 	private int iD;
+	private int specialistID;
 	private String name;
 
-	public int getSpecialistID(){
-		return specialistID;
+	public SpecialisationItem() {
 	}
 
-	public int getID(){
+	public int getiD() {
 		return iD;
 	}
 
-	public String getName(){
+	public void setiD(int iD) {
+		this.iD = iD;
+	}
+
+	public int getSpecialistID() {
+		return specialistID;
+	}
+
+	public void setSpecialistID(int specialistID) {
+		this.specialistID = specialistID;
+	}
+
+	public String getName() {
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }
