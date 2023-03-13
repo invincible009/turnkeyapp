@@ -5,7 +5,7 @@ preliminary diagnosis on patients based on a catalogue of symptoms provided. You
 a. Collecting vital signs and symptoms of patients
 b. Performing initial diagnoses
 c. Scheduling appointments for patients with a doctor with specialization in the diagnosis
-result
+result.
 ## Section 1
 Using SpringBoot/Java restful backend and frontend framework (jquery, angular e.t.c) develop a
 web-based medical diagnosis app using a publicly available medical diagnosis API from
