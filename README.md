@@ -13,4 +13,4 @@ https://apimedic.com/ Your app should:
 a. Allow users to enter a patient’s symptoms and return diagnosis results.
 b. Functionality to allow users to mark diagnosis result as valid or invalid and save to a
 database
-c. Search functionality for the diagnosis results
+c. Search functionality for the diagnosis results.
