@@ -3,7 +3,7 @@
 You work at the front desk of a community health facility. You are responsible for performing
 preliminary diagnosis on patients based on a catalogue of symptoms provided. Your job involves:
 a. Collecting vital signs and symptoms of patients
-b. Performing initial diagnoses
+b. Performing initial diagnoses.
 c. Scheduling appointments for patients with a doctor with specialization in the diagnosis
 result.
 ## Section 1
