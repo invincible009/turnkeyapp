@@ -1,6 +1,6 @@
 # Turnkey Africa Test
 ## Question.
-You work at the front desk of a community health facility. You are responsible for performing
+You work at the front desk of a community health facility.. You are responsible for performing
 preliminary diagnosis on patients based on a catalogue of symptoms provided. Your job involves:
 a. Collecting vital signs and symptoms of patients.
 b. Performing initial diagnoses.
